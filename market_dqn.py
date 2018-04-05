@@ -97,10 +97,10 @@ if __name__ == "__main__":
 	win_cnt = 0
 	for e in range(epoch):
 		loss = 0.
-		env.reset()
+		env._reset()
 		game_over = False
 		# get initial input
-		input_t = env.reset()
+		input_t = env._reset()
 		cumReward = 0
 
 		while not game_over:

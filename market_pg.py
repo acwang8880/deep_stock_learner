@@ -47,8 +47,8 @@ class PolicyGradient:
 		avg_reward_sum = 0.
 
 		for e in xrange(max_episode):
-			env.reset()
-			observation = env.reset()
+			env._reset()
+			observation = env._reset()
 			game_over = False
 			reward_sum = 0
 
@@ -75,7 +75,7 @@ class PolicyGradient:
 					y = [float(action)]
 					outputs.append(y)
 
-				observation, reward, game_over, info = self.env.step(action)
+				observation, reward, game_over, info = self.env._step(action)
 				reward_sum += float(reward)
 
 				rewards.append(float(reward))
@@ -143,8 +143,9 @@ if __name__ == "__main__":
 			codeMap[tokens[0]] = tokens[1]
 
 	f.close()
-
-	env = MarketEnv(dir_path = "./data/", target_codes = codeMap.keys(), input_codes = [], start_date = "2010-08-25", end_date = "2015-08-25", sudden_death = -1.0)
+        
+        print("codeMap: {}".format(str(codeMap)))
+	env = MarketEnv(dir_path = "./data/", target_codes = codeMap.keys(), input_codes = [], start_date = "2010-08-25", end_date = "2015-08-25",  sudden_death = -1.0)
 
 	pg = PolicyGradient(env, discount = 0.9, model_filename = modelFilename, history_filename = historyFilename)
 	pg.train(verbose = 1)
