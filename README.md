@@ -1,7 +1,7 @@
 # deep_stock_learner
 Using deep learning model to long/short sample markets
 
-Credit to hk-kim for inspiration.
+Credit to hk-kim for base models and inspiration.
 
 ## Reference
 
