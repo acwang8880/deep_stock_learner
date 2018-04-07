@@ -11,7 +11,6 @@ class MarketEnv(gym.Env):
 
 	def __init__(self, dir_path, target_codes, input_codes, start_date, end_date, scope = 60, sudden_death = -1., cumulative_reward = False):
 
-                print("Target Codes in market model: {}".format(target_codes))
 		self.startDate = start_date
 		self.endDate = end_date
 		self.scope = scope
@@ -131,8 +130,6 @@ class MarketEnv(gym.Env):
 		return self.state, self.reward, self.done, {"dt": self.targetDates[self.currentTargetIndex], "cum": self.cum, "code": self.targetCode}
 
 	def _reset(self):
-                print("Self.targetCodes length: {}".format(len(self.targetCodes)))
-                print("Random: {}".format(int(random() * len(self.targetCodes))))
                 
 		self.targetCode = self.targetCodes[int(random() * len(self.targetCodes))]
 		self.target = self.dataMap[self.targetCode]

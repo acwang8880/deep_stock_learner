@@ -105,7 +105,7 @@ class PolicyGradient:
 
 			discounted_rewards_ = self.discount_rewards(rewards_)
 			#discounted_rewards_ -= np.mean(discounted_rewards_)
-			discounted_rewards_ /= np.std(discounted_rewards_)
+			discounted_rewards_ /= np.std(discounted_rewards_) if len(discounted_rewards_)==0 else 1
 
 			#outputs_ *= discounted_rewards_
 			for i, r in enumerate(zip(rewards, discounted_rewards_)):
@@ -144,7 +144,6 @@ if __name__ == "__main__":
 
 	f.close()
         
-        print("codeMap: {}".format(str(codeMap)))
 	env = MarketEnv(dir_path = "./data/", target_codes = codeMap.keys(), input_codes = [], start_date = "2010-08-25", end_date = "2015-08-25",  sudden_death = -1.0)
 
 	pg = PolicyGradient(env, discount = 0.9, model_filename = modelFilename, history_filename = historyFilename)
